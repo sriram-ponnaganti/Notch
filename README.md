@@ -1,66 +1,105 @@
-# Notch
+# ✦ Notch — AI Meeting Assistant
 
-A landing page for **Notch** — a fictional AI meeting-notes product for engineering teams. Built as a portfolio piece to demonstrate SaaS landing-page design and front-end craft.
+<p align="center">
+  <strong>Turn conversations into progress.</strong>
+</p>
 
-Linear-style dark aesthetic, sharp typography, monospace accents, custom product mockup in the hero.
+<p align="center">
+  A modern, dark SaaS landing page for an AI-powered meeting assistant that transforms conversations into structured summaries, decisions, and actionable tasks.
+</p>
 
-## Stack
+<p align="center">
 
-- React 18 + TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion (scroll-driven reveals)
-- Lucide React (icons)
-- Manrope + JetBrains Mono (Google Fonts)
+![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animations-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-**No backend, no API keys, no env vars.** Pure static site.
+</p>
 
-## Sections
+<p align="center">
 
-1. Fixed navbar (transparent → blurred on scroll)
-2. Hero with custom product mockup (transcript ↔ AI-extracted notes, two-pane window)
-3. Logo strip (marquee of fictional companies)
-4. Features (6-card grid, one featured)
-5. How it works (3 numbered steps with mono code annotations)
-6. Pricing (3 tiers, "Team" featured)
-7. Testimonials (3 fake quotes)
-8. Final CTA (big closing pitch)
-9. Footer (4 link columns + status pill + credits)
+![Vite](https://img.shields.io/badge/Vite-Fast_Builds-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide-Icons-F56565?style=for-the-badge&logo=lucide&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Responsive](https://img.shields.io/badge/Responsive-Design-22C55E?style=for-the-badge&logo=responsive&logoColor=white)
 
-## Run locally
+</p>
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # production build → /dist
-npm run preview  # serve /dist locally
-```
+---
 
-## Deploy to Vercel
+## ✨ Overview
 
-Push to GitHub, import the repo at [vercel.com/new](https://vercel.com/new), click Deploy. That's it — no env vars to configure.
+**Notch** is a modern SaaS landing page concept for an AI meeting assistant.
 
-Or via CLI:
+The interface is designed around a premium **dark + purple visual system**, combining:
 
-```bash
-npm i -g vercel       # or use `npx vercel`
-vercel --prod
-```
+- Liquid glass effects
+- Glassmorphism
+- Smooth micro-interactions
+- 3D hover effects
+- Framer Motion animations
+- Responsive layouts
+- Minimal typography
+- AI-focused product visualization
 
-## Customisation pointers
+The goal is to create a landing page that feels like a polished modern SaaS product rather than a traditional static website.
 
-| Want to change | File |
-|---|---|
-| Product name, nav links | `src/sections/Nav.tsx` |
-| Hero headline + mockup content | `src/sections/Hero.tsx` |
-| Fictional company names | `src/sections/LogoStrip.tsx` |
-| Feature list | `src/sections/Features.tsx` (`FEATURES` array) |
-| Pricing tiers | `src/sections/Pricing.tsx` (`TIERS` array) |
-| Testimonials | `src/sections/Testimonials.tsx` (`QUOTES` array) |
-| Footer links / credits | `src/sections/Footer.tsx` |
-| Brand colors, fonts | `tailwind.config.js` + `src/index.css` |
-| Page metadata (title, OG tags) | `index.html` |
+---
 
-## Credits
+## 🚀 Live Preview
 
-Designed & built by **Harsh Goyal** as a portfolio piece. Notch is not a real product.
+🌐 **Live Website:**  
+[Visit Notch](#)
+https://notch-betaa.vercel.app/
+
+---
+
+## 📸 Preview
+
+<p align="center">
+  <img src="./screenshots/notch-preview.png" alt="Notch Preview" width="100%">
+</p>
+
+> Add your screenshot inside:
+>
+> `screenshots/notch-preview.png`
+
+---
+
+# 🎯 Features
+
+### 🧠 AI Meeting Intelligence
+
+Notch transforms meeting conversations into structured information.
+
+- AI-generated summaries
+- Action item extraction
+- Decision tracking
+- Speaker-aware transcripts
+- Searchable meeting history
+
+---
+
+### 🎙️ Meeting Transcript
+
+The product showcase demonstrates a real-time meeting transcript with:
+
+- Speaker identification
+- Timestamped conversations
+- Meeting duration
+- Live transcription indicator
+- Highlighted important statements
+
+---
+
+### ⚡ Action Items
+
+Automatically surface tasks from conversations.
+
+Example:
+
+```text
+☐ Pair on auth migration       @alex @jamie
+☐ Finalize release notes       @sarah
+☑ Confirm deploy window
