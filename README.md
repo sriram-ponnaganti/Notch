@@ -58,7 +58,7 @@ https://notch-betaa.vercel.app/
 ## 📸 Preview
 
 <p align="center">
-  <img src="./screenshots/notch-preview.png" alt="Notch Preview" width="100%">
+  <img src="./notch3.png" alt="Notch Preview" width="100%">
 </p>
 
 > Add your screenshot inside:
