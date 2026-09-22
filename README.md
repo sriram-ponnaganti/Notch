@@ -57,22 +57,16 @@ https://notch-betaa.vercel.app/
 
 ## 📸 Preview
 
-<p align="left">
-  <img src="./assets/notch3.png" alt="Notch Preview" width="100%">
-</p>
-
-<p align="right">
-  <img src="./assets/notch2.png" alt="Notch Preview" width="100%">
-</p>
-
-<p align="left">
-  <img src="./assets/notch1.png" alt="Notch Preview" width="100%">
-</p>
-
-<p align="right">
-  <img src="./assets/notch4.png" alt="Notch Preview" width="100%">
-</p>
----
+<table>
+  <tr>
+    <td><img src="./assets/notch3.png" alt="Notch Preview 3" width="100%"></td>
+    <td><img src="./assets/notch2.png" alt="Notch Preview 2" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./assets/notch1.png" alt="Notch Preview 1" width="100%"></td>
+    <td><img src="./assets/notch4.png" alt="Notch Preview 4" width="100%"></td>
+  </tr>
+</table>
 
 # 🎯 Features
 
