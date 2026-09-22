@@ -1,0 +1,870 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  background: #000;
+  color: #fafafa;
+  font-family: 'Manrope', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f24;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a30;
+}
+
+/* Subtle grid background — used on hero / final-cta sections */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+
+/* Radial spotlight — soft violet glow centered */
+.bg-spotlight {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(139, 92, 246, 0.18),
+    transparent 70%
+  );
+}
+
+/* Hairline border helper — slightly visible */
+.border-hairline {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.border-hairline-bright {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Text gradient — used sparingly on key headlines */
+.text-fade {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Soft glow on hover for primary CTA */
+.glow-violet {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 10px 40px -10px rgba(139, 92, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.glow-violet:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 14px 60px -8px rgba(139, 92, 246, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Marquee animation for logo strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+/* Soft pulse for status dots */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+.animate-pulse-dot {
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+img { user-select: none; -webkit-user-drag: none; }
+
+/* =========================================================
+   IOS LIQUID GLASS FEATURE CARDS
+   ========================================================= */
+
+.feature-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transform:
+    perspective(1000px)
+    rotateX(var(--rotate-x))
+    rotateY(var(--rotate-y))
+    translateZ(0);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------
+   Main glass surface
+   --------------------------------------------------------- */
+
+.feature-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.018) 35%,
+      rgba(139, 92, 246, 0.025) 65%,
+      rgba(255, 255, 255, 0.04)
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.45s ease;
+
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* ---------------------------------------------------------
+   Cursor-following liquid light
+   --------------------------------------------------------- */
+
+.liquid-glass {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      260px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.18),
+      rgba(167, 139, 250, 0.12) 18%,
+      rgba(139, 92, 246, 0.06) 38%,
+      transparent 68%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.35s ease;
+
+  mix-blend-mode: screen;
+}
+
+/* Soft blurred liquid underneath */
+
+.liquid-glass::before {
+  content: "";
+
+  position: absolute;
+  inset: -60px;
+
+  background:
+    radial-gradient(
+      circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.12),
+      rgba(139, 92, 246, 0.08) 25%,
+      transparent 60%
+    );
+
+  filter: blur(30px);
+}
+
+/* ---------------------------------------------------------
+   Glass reflection
+   --------------------------------------------------------- */
+
+.glass-reflection {
+  position: absolute;
+  inset: 1px;
+
+  pointer-events: none;
+  z-index: 2;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.11),
+      transparent 22%,
+      transparent 65%,
+      rgba(255, 255, 255, 0.035)
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.45s ease;
+}
+
+/* ---------------------------------------------------------
+   Hovered card
+   --------------------------------------------------------- */
+
+.feature-card:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+
+  background-color: rgba(255, 255, 255, 0.035);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.38),
+    0 0 60px rgba(139, 92, 246, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-card:hover .liquid-glass {
+  opacity: 1;
+}
+
+.feature-card:hover .glass-reflection {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   TEXT LIQUID GLASS EFFECT
+   Only the hovered card changes
+   --------------------------------------------------------- */
+
+.feature-card h3 {
+  transform: translateZ(20px) scale(1);
+
+  transform-origin: left center;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s ease,
+    text-shadow 0.35s ease;
+}
+
+.feature-card p {
+  transform: translateZ(12px) scale(1);
+
+  transform-origin: left top;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s ease;
+}
+
+/* Smooth enlargement */
+
+.feature-card:hover h3 {
+  transform: translateZ(28px) scale(1.08);
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.16),
+    0 0 35px rgba(139, 92, 246, 0.10);
+}
+
+.feature-card:hover p {
+  transform: translateZ(18px) scale(1.025);
+
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* ---------------------------------------------------------
+   Icon glass
+   --------------------------------------------------------- */
+
+.feature-card:hover .w-9 {
+  box-shadow:
+    0 0 25px rgba(139, 92, 246, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ---------------------------------------------------------
+   Moving cursor glow
+   --------------------------------------------------------- */
+
+.card-edge-glow {
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+  z-index: 3;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(167, 139, 250, 0.18),
+      rgba(139, 92, 246, 0.06) 35%,
+      transparent 70%
+    );
+
+  filter: blur(22px);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+.feature-card:hover .card-edge-glow {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   Keep content above glass layers
+   --------------------------------------------------------- */
+
+.feature-card > * {
+  transform-style: preserve-3d;
+}
+
+.feature-card > .relative {
+  position: relative;
+  z-index: 10;
+}
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (hover: none) {
+  .feature-card {
+    transform: none !important;
+  }
+
+  .feature-card h3,
+  .feature-card p {
+    transform: none !important;
+  }
+
+  .liquid-glass,
+  .glass-reflection,
+  .card-edge-glow {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-card h3,
+  .feature-card p {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .liquid-glass,
+  .glass-reflection,
+  .card-edge-glow {
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   HERO LIQUID GLASS
+   ========================================================= */
+
+/* Announcement pill */
+.hero-announcement {
+  --announcement-x: 50%;
+  --announcement-y: 50%;
+
+  position: relative;
+  overflow: hidden;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-announcement-glow {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+
+  left: var(--announcement-x);
+  top: var(--announcement-y);
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(139, 92, 246, 0.22),
+      rgba(255, 255, 255, 0.08) 30%,
+      transparent 70%
+    );
+
+  filter: blur(15px);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+.hero-announcement:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 255, 255, 0.18);
+
+  background: rgba(255, 255, 255, 0.065);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.hero-announcement:hover .hero-announcement-glow {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   HERO PRODUCT MOCKUP
+   ========================================================= */
+
+.hero-product-mockup {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --hero-rotate-x: 0deg;
+  --hero-rotate-y: 0deg;
+
+  transform:
+    perspective(1400px)
+    rotateX(var(--hero-rotate-x))
+    rotateY(var(--hero-rotate-y));
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.2s ease-out,
+    box-shadow 0.4s ease;
+
+  will-change: transform;
+}
+
+
+/* Cursor-following reflection */
+.hero-mockup-glow {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 5;
+
+  background:
+    radial-gradient(
+      420px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.075),
+      rgba(139, 92, 246, 0.055) 20%,
+      transparent 65%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.4s ease;
+
+  mix-blend-mode: screen;
+}
+
+.hero-product-mockup:hover .hero-mockup-glow {
+  opacity: 1;
+}
+
+
+/* Thin moving edge light */
+.hero-mockup-edge {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 1px;
+
+  pointer-events: none;
+  z-index: 10;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(139, 92, 246, 0.35),
+      rgba(255, 255, 255, 0.25),
+      rgba(139, 92, 246, 0.35),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.4s ease;
+}
+
+.hero-product-mockup:hover .hero-mockup-edge {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   HERO CTA POLISH
+   ========================================================= */
+
+.hero-ctas button {
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.hero-ctas button:hover {
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / MOBILE
+   ========================================================= */
+
+@media (hover: none) {
+  .hero-product-mockup {
+    transform: none !important;
+  }
+
+  .hero-mockup-glow {
+    display: none;
+  }
+
+  .hero-announcement-glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-product-mockup,
+  .hero-announcement,
+  .hero-ctas button {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-mockup-glow,
+  .hero-announcement-glow {
+    display: none;
+  }
+}
+
+/* =========================================================
+   HERO CTA LIQUID GLASS BUTTONS
+   ========================================================= */
+
+.hero-liquid-button {
+  --btn-x: 50%;
+  --btn-y: 50%;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  transform: translateZ(0);
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease;
+
+  will-change: transform;
+}
+
+/* Cursor-following liquid light */
+.hero-button-glow {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  left: var(--btn-x);
+  top: var(--btn-y);
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+  z-index: 2;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(167, 139, 250, 0.18) 20%,
+      rgba(139, 92, 246, 0.08) 42%,
+      transparent 72%
+    );
+
+  filter: blur(18px);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.35s ease,
+    left 0.12s ease-out,
+    top 0.12s ease-out;
+}
+
+/* Glass reflection */
+.hero-button-reflection {
+  position: absolute;
+  inset: 1px;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+  z-index: 3;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.20),
+      rgba(255, 255, 255, 0.04) 22%,
+      transparent 48%,
+      rgba(255, 255, 255, 0.08) 78%,
+      rgba(255, 255, 255, 0.14)
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.35s ease;
+
+  mix-blend-mode: screen;
+}
+
+/* Actual Button */
+.hero-liquid-button-inner {
+  position: relative !important;
+  z-index: 4;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Primary button */
+.hero-liquid-primary .hero-liquid-button-inner {
+  box-shadow:
+    0 10px 35px rgba(139, 92, 246, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Secondary button */
+.hero-liquid-secondary .hero-liquid-button-inner {
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Hover */
+.hero-liquid-button:hover {
+  transform: translateY(-3px) scale(1.025);
+}
+
+.hero-liquid-button:hover .hero-button-glow {
+  opacity: 1;
+}
+
+.hero-liquid-button:hover .hero-button-reflection {
+  opacity: 1;
+}
+
+/* Primary hover */
+.hero-liquid-primary:hover .hero-liquid-button-inner {
+  box-shadow:
+    0 16px 50px rgba(139, 92, 246, 0.35),
+    0 0 35px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Secondary hover */
+.hero-liquid-secondary:hover .hero-liquid-button-inner {
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(139, 92, 246, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* Moving shine */
+.hero-liquid-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: -120%;
+  left: -80%;
+
+  width: 45%;
+  height: 340%;
+
+  pointer-events: none;
+  z-index: 5;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.20),
+      transparent
+    );
+
+  transform: rotate(20deg);
+
+  opacity: 0;
+
+  transition:
+    left 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.hero-liquid-button:hover::after {
+  left: 140%;
+  opacity: 1;
+}
+
+/* Primary glow around border */
+.hero-liquid-primary:hover {
+  filter:
+    drop-shadow(0 0 12px rgba(139, 92, 246, 0.25));
+}
+
+/* Secondary subtle glow */
+.hero-liquid-secondary:hover {
+  filter:
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
+}
+
+
+/* =========================================================
+   MOBILE / REDUCED MOTION
+   ========================================================= */
+
+@media (hover: none) {
+  .hero-liquid-button {
+    transform: none !important;
+  }
+
+  .hero-button-glow,
+  .hero-button-reflection {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-liquid-button,
+  .hero-liquid-button-inner {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-button-glow,
+  .hero-button-reflection,
+  .hero-liquid-button::after {
+    display: none;
+  }
+}
+
+
+/* Bottom CTA - slightly stronger liquid glass */
+
+.hero-liquid-primary:hover .hero-liquid-button-inner {
+  box-shadow:
+    0 18px 55px rgba(139, 92, 246, 0.42),
+    0 0 45px rgba(139, 92, 246, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.hero-liquid-secondary:hover .hero-liquid-button-inner {
+  box-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(139, 92, 246, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
