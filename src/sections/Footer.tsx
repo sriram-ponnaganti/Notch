@@ -78,12 +78,12 @@ const Footer = () => {
           <p className="font-mono text-[11px] text-white/35">
             Designed & built by{' '}
             <a
-              href="https://www.linkedin.com/in/harsh-goyal-7900b2256/"
+              href="https://www.linkedin.com/in/sriram-ponnaganti/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-white underline-offset-4 hover:underline"
             >
-              Harsh Goyal
+              Sriram
             </a>
           </p>
         </div>
