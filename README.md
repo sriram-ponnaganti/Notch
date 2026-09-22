@@ -50,7 +50,7 @@ The goal is to create a landing page that feels like a polished modern SaaS prod
 ## 🚀 Live Preview
 
 🌐 **Live Website:**  
-[Visit Notch](#)
+[Visit Notch](#):
 https://notch-betaa.vercel.app/
 
 ---
@@ -58,7 +58,7 @@ https://notch-betaa.vercel.app/
 ## 📸 Preview
 
 <p align="center">
-  <img src="./notch3.png" alt="Notch Preview" width="100%">
+  <img src="./assets/notch3.png" alt="Notch Preview" width="100%">
 </p>
 
 > Add your screenshot inside:
